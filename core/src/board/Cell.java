@@ -9,6 +9,7 @@ public class Cell {
 
 	private Character character;
 	private boolean empty;
+	private boolean occupied;
 
 	public Cell() {
 		this.character = null;
@@ -16,8 +17,12 @@ public class Cell {
 	}
 
 	public Texture getSpriteOfCell() {
+		if (this.occupied) {
+			return new Texture("board/emptyCell.png");
+		}
 		if (!this.empty) {
 			return this.character.getSprite();
+
 		} else {
 			return new Texture("board/emptyCell.png");
 		}
@@ -49,6 +54,13 @@ public class Cell {
 		return this.character.getName();
 	}
 
+	public void setIsGonnaBeOccupied() {
+		this.empty = false;
+		this.occupied = true;
+	}
+
+	
+
 //	
 //	
 //				1 2   2 2
@@ -56,11 +68,11 @@ public class Cell {
 //				1 0   0 2	 
 //	
 //	
-// topleft  col = col / row = row + 1;
+// topleft  col = col 	  / row = row + 1;
 // topright col = col + 1 / row = row + 1;
 // left     col = col - 1 / row = row;
 // right    col = col + 1 / row = row;
-// botleft  col = col / row = row - 1;
+// botleft  col = col     / row = row - 1;
 // botright col = col - 1 / row = row + 1;
 
 }
